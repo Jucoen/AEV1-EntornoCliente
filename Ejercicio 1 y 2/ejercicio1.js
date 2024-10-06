@@ -1,34 +1,34 @@
 let categorias = document.getElementsByClassName('style_wrapper');
 
-let NombreCategoriasFrutas = ["melon", "orange", "peach", "strawberry", "watermelon"];
+let NombreCategoriasFrutas = ["Melon", "Naranja", "Melocotones", "Fresas", "Sandia"];
 let NombreCategoriasVerduras = ["Cebolla_Dulce", "Cebolla_morada", "Tomate_cherry", "Tomate_raf", "Tomate_rosa"];
 
 let ContenidoFrutas = [
-    { categoria: 'melon', rutas: [
+    { categoria: 'Melon', rutas: [
         "images/frutas/melon/1.jpg", 
         "images/frutas/melon/2.jpg", 
         "images/frutas/melon/3.jpg", 
         "images/frutas/melon/4.jpg"
     ]},
-    { categoria: 'orange', rutas: [
+    { categoria: 'Naranja', rutas: [
         "images/frutas/orange/1.jpg", 
         "images/frutas/orange/2.jpg",
         "images/frutas/orange/3.jpg",
         "images/frutas/orange/4.jpg"
     ]},
-    { categoria: 'peach', rutas: [
+    { categoria: 'Melocotones', rutas: [
         "images/frutas/peach/1.jpg", 
         "images/frutas/peach/2.jpg",
         "images/frutas/peach/3.jpg", 
         "images/frutas/peach/4.jpg"
     ]},
-    { categoria: 'strawberry', rutas: [
+    { categoria: 'Fresas', rutas: [
         "images/frutas/strawberry/1.jpg", 
         "images/frutas/strawberry/2.jpg",
         "images/frutas/strawberry/3.jpg", 
         "images/frutas/strawberry/4.jpg"
     ]},
-    { categoria: 'watermelon', rutas: [
+    { categoria: 'Sandia', rutas: [
         "images/frutas/watermelon/1.jpg", 
         "images/frutas/watermelon/2.jpg",
         "images/frutas/watermelon/3.jpg", 
@@ -95,14 +95,25 @@ function CategoriaFrutas() {
     for (let i = 0; i < categorias.length; i++) {
         let Categoria = categorias[i].getElementsByTagName('p')[0];
         Categoria.textContent = NombreCategoriasFrutas[i];
+        
 
         categorias[i].addEventListener('mouseover', function () {
             currentCategoryIndex = i; 
             currentImageIndex = 0;
             ImgPrincipal.src = ContenidoFrutas[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoFrutas[i].categoria;
+
+
+
+            for( let j = 0; j<categorias.length; j++){
+                let EstiloCategoria = categorias[j].getElementsByTagName('p')[0];
+                EstiloCategoria.style.opacity = j === i ? "1" : "0.5";
+            }
+    
+    
         });
 
+     
     }
 
     h1.textContent = 'Frutas';
@@ -123,6 +134,12 @@ function CategoriaVerduras() {
             currentImageIndex = 0; 
             ImgPrincipal.src = ContenidoVerduras[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoVerduras[i].categoria;
+
+            for( let j = 0; j<categorias.length; j++){
+                let EstiloCategoria = categorias[j].getElementsByTagName('p')[0];
+                EstiloCategoria.style.opacity = j === i ? "1" : "0.5";
+            }
+    
         });
 
     }
@@ -133,16 +150,16 @@ function CategoriaVerduras() {
 function Previo() {
     currentImageIndex--;
     if (currentImageIndex < 0) {
-        if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
+        if (currentCategoryIndex < 5) { 
             currentImageIndex = ContenidoFrutas[currentCategoryIndex].rutas.length - 1; 
-        } else { // Si estamos en la categoría de verduras
+        } else { 
             currentImageIndex = ContenidoVerduras[currentCategoryIndex - 5].rutas.length - 1; 
         }
     }
 
-    if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
+    if (currentCategoryIndex < 5) { 
         ImgPrincipal.src = ContenidoFrutas[currentCategoryIndex].rutas[currentImageIndex]; 
-    } else { // Si estamos en la categoría de verduras
+    } else { 
         ImgPrincipal.src = ContenidoVerduras[currentCategoryIndex - 5].rutas[currentImageIndex]; 
     }
 }
@@ -150,12 +167,12 @@ function Previo() {
 function Siguiente() {
     currentImageIndex++;
     
-    if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
-        if (currentImageIndex >= ContenidoFrutas[currentCategoryIndex].rutas.length) {
+    if (currentCategoryIndex < 5) { 
+                if (currentImageIndex >= ContenidoFrutas[currentCategoryIndex].rutas.length) {
             currentImageIndex = 0; 
         }
         ImgPrincipal.src = ContenidoFrutas[currentCategoryIndex].rutas[currentImageIndex]; 
-    } else { // Si estamos en la categoría de verduras
+    } else { 
         if (currentImageIndex >= ContenidoVerduras[currentCategoryIndex - 5].rutas.length) {
             currentImageIndex = 0; 
         }
