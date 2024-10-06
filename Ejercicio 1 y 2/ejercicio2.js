@@ -1,16 +1,15 @@
-   const h1 = document.getElementsByTagName('h1')[0];;
+   let h1 = document.getElementsByTagName('h1')[0];;
 
     h1.addEventListener("click", function() {
         mostrarModal();
     });
 
     function mostrarModal() {
-        const modalOverlay = document.createElement("div");
+        let modalOverlay = document.createElement("div");
         modalOverlay.style.position = "fixed";
         modalOverlay.style.top = "5%";
         modalOverlay.style.left = "50%";
         
-
         document.body.appendChild(modalOverlay);
 
         const modal = document.createElement("div");
@@ -32,14 +31,14 @@
             document.body.removeChild(modalOverlay);
         });
 
-        const form = document.createElement("form");
-        const input = document.createElement("input");
+        let form = document.createElement("form");
+        let input = document.createElement("input");
         input.type = "text";
         input.style.color = "black";
         input.style.marginTop = "10px";
         form.appendChild(input);
 
-        const submitButton = document.createElement("button");
+        let submitButton = document.createElement("button");
         submitButton.textContent = "Enviar";
         submitButton.style.marginTop = "10px";
         submitButton.type = "submit";
@@ -49,7 +48,7 @@
 
         form.addEventListener("submit", function(e) {
             e.preventDefault();
-            const valor = input.value.toLowerCase();
+            let valor = input.value.toLowerCase();
 
             if (valor === "frutas" || valor === "verduras") {
                if (valor === "frutas"){

@@ -1,6 +1,9 @@
 let categorias = document.getElementsByClassName('style_wrapper');
 
+let ImgTexto = document.getElementsByClassName('vignette');
+
 let NombreCategoriasFrutas = ["Melon", "Naranja", "Melocotones", "Fresas", "Sandia"];
+
 let NombreCategoriasVerduras = ["Cebolla_Dulce", "Cebolla_morada", "Tomate_cherry", "Tomate_raf", "Tomate_rosa"];
 
 let ContenidoFrutas = [
@@ -102,6 +105,7 @@ function CategoriaFrutas() {
             currentImageIndex = 0;
             ImgPrincipal.src = ContenidoFrutas[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoFrutas[i].categoria;
+             ImgTexto[0].getElementsByTagName('img')[0].src = ContenidoFrutas[i].rutas[0];
 
 
 
@@ -112,8 +116,6 @@ function CategoriaFrutas() {
     
     
         });
-
-     
     }
 
     h1.textContent = 'Frutas';
@@ -134,6 +136,7 @@ function CategoriaVerduras() {
             currentImageIndex = 0; 
             ImgPrincipal.src = ContenidoVerduras[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoVerduras[i].categoria;
+            ImgTexto[0].getElementsByTagName('img')[0].src = ContenidoVerduras[i].rutas[0];
 
             for( let j = 0; j<categorias.length; j++){
                 let EstiloCategoria = categorias[j].getElementsByTagName('p')[0];
