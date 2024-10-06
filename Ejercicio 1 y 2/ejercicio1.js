@@ -35,7 +35,7 @@ function clearEventListeners() {
 function CategoriaFrutas() {
     clearEventListeners(); 
     for (let i = 0; i < categorias.length; i++) {
-        let Categoria = categorias[i].querySelector('p'); 
+        let Categoria = categorias[i].getElementsByTagName('p')[0]; 
         Categoria.textContent = NombreCategoriasFrutas[i];
 
         categorias[i].addEventListener('mouseover', function() {
@@ -56,7 +56,7 @@ function CategoriaFrutas() {
 function CategoriaVerduras() {
     clearEventListeners(); 
     for (let i = 0; i < categorias.length; i++) {
-        let Categoria = categorias[i].querySelector('p'); 
+        let Categoria = categorias[i].getElementsByTagName('p')[0]; 
         Categoria.textContent = NombreCategoriasVerduras[i];
     
         categorias[i].addEventListener('mouseover', function() {
