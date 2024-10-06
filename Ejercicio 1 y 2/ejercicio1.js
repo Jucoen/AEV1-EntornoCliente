@@ -4,25 +4,80 @@ let NombreCategoriasFrutas = ["melon", "orange", "peach", "strawberry", "waterme
 let NombreCategoriasVerduras = ["Cebolla_Dulce", "Cebolla_morada", "Tomate_cherry", "Tomate_raf", "Tomate_rosa"];
 
 let ContenidoFrutas = [
-    {categoria: 'melon', rutas: "images/frutas/melon/1.jpg"},
-    {categoria: 'orange', rutas: "images/frutas/orange/1.jpg"},
-    {categoria: 'peach', rutas: "images/frutas/peach/1.jpg"},
-    {categoria: 'strawberry', rutas: "images/frutas/strawberry/1.jpg"},
-    {categoria: 'watermelon', rutas: "images/frutas/watermelon/1.jpg"}
+    { categoria: 'melon', rutas: [
+        "images/frutas/melon/1.jpg", 
+        "images/frutas/melon/2.jpg", 
+        "images/frutas/melon/3.jpg", 
+        "images/frutas/melon/4.jpg"
+    ]},
+    { categoria: 'orange', rutas: [
+        "images/frutas/orange/1.jpg", 
+        "images/frutas/orange/2.jpg",
+        "images/frutas/orange/3.jpg",
+        "images/frutas/orange/4.jpg"
+    ]},
+    { categoria: 'peach', rutas: [
+        "images/frutas/peach/1.jpg", 
+        "images/frutas/peach/2.jpg",
+        "images/frutas/peach/3.jpg", 
+        "images/frutas/peach/4.jpg"
+    ]},
+    { categoria: 'strawberry', rutas: [
+        "images/frutas/strawberry/1.jpg", 
+        "images/frutas/strawberry/2.jpg",
+        "images/frutas/strawberry/3.jpg", 
+        "images/frutas/strawberry/4.jpg"
+    ]},
+    { categoria: 'watermelon', rutas: [
+        "images/frutas/watermelon/1.jpg", 
+        "images/frutas/watermelon/2.jpg",
+        "images/frutas/watermelon/3.jpg", 
+        "images/frutas/watermelon/4.jpg"
+    ]}
 ];
 
 let ContenidoVerduras = [
-    {categoria: 'Cebolla_Dulce', rutas: "images/verduras/cebolla_dulce/1.jpg"},
-    {categoria: 'Cebolla_morada', rutas: "images/verduras/cebolla_morada/1.jpg"},
-    {categoria: 'Tomate_cherry', rutas: "images/verduras/tomate_cherry/1.jpg"},
-    {categoria: 'Tomate_raf', rutas: "images/verduras/tomate_raf/1.jpg"},
-    {categoria: 'Tomate_rosa', rutas: "images/verduras/tomate_rosa/1.jpg"}
+    { categoria: 'Cebolla_Dulce', rutas: [
+        "images/verduras/cebolla_dulce/1.jpg", 
+        "images/verduras/cebolla_dulce/2.jpg",
+        "images/verduras/cebolla_dulce/3.jpg", 
+        "images/verduras/cebolla_dulce/4.jpg"
+    ]},
+    { categoria: 'Cebolla_morada', rutas: [
+        "images/verduras/cebolla_morada/1.jpg", 
+        "images/verduras/cebolla_morada/2.jpg",
+        "images/verduras/cebolla_morada/3.jpg", 
+        "images/verduras/cebolla_morada/4.jpg"
+    ]},
+    { categoria: 'Tomate_cherry', rutas: [
+        "images/verduras/tomate_cherry/1.jpg", 
+        "images/verduras/tomate_cherry/2.jpg",
+        "images/verduras/tomate_cherry/3.jpg", 
+        "images/verduras/tomate_cherry/4.jpg"
+    ]},
+    { categoria: 'Tomate_raf', rutas: [
+        "images/verduras/tomate_raf/1.jpg", 
+        "images/verduras/tomate_raf/2.jpg",
+        "images/verduras/tomate_raf/3.jpg", 
+        "images/verduras/tomate_raf/4.jpg"
+    ]},
+    { categoria: 'Tomate_rosa', rutas: [
+        "images/verduras/tomate_rosa/1.jpg", 
+        "images/verduras/tomate_rosa/2.jpg",
+        "images/verduras/tomate_rosa/3.jpg", 
+        "images/verduras/tomate_rosa/4.jpg"
+    ]}
 ];
 
 h1 = document.getElementsByTagName('h1')[0];
 let h2 = document.getElementsByTagName('h2')[0];
+let ImgPrincipal = document.getElementsByTagName('img')[0];
+
 let PreviousButton = document.getElementsByTagName('button')[0];
 let NextButton = document.getElementsByTagName('button')[1];
+
+let currentCategoryIndex = 0; 
+let currentImageIndex = 0; 
 
 function clearEventListeners() {
     for (let i = 0; i < categorias.length; i++) {
@@ -31,47 +86,86 @@ function clearEventListeners() {
     }
 }
 
-// Funcion que llama el formulario para cambiar a categoria frutas
+// Cambiar a categoría frutas
 function CategoriaFrutas() {
-    clearEventListeners(); 
+    clearEventListeners();
+    currentCategoryIndex = 0; 
+    currentImageIndex = 0; 
+
     for (let i = 0; i < categorias.length; i++) {
-        let Categoria = categorias[i].getElementsByTagName('p')[0]; 
+        let Categoria = categorias[i].getElementsByTagName('p')[0];
         Categoria.textContent = NombreCategoriasFrutas[i];
 
-        categorias[i].addEventListener('mouseover', function() {
-            Categoria.style.backgroundImage = `url(${ContenidoFrutas[i].rutas})`;
-            Categoria.style.backgroundSize = 'cover';
+        categorias[i].addEventListener('mouseover', function () {
+            currentCategoryIndex = i; 
+            currentImageIndex = 0;
+            ImgPrincipal.src = ContenidoFrutas[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoFrutas[i].categoria;
         });
 
-        categorias[i].addEventListener('mouseout', function() {
-            Categoria.style.backgroundImage = ''; 
-        });
     }
 
     h1.textContent = 'Frutas';
 }
 
-// Funcion que llama el formulario para cambiar a categoria verduras
+// Cambiar a categoría verduras
 function CategoriaVerduras() {
-    clearEventListeners(); 
+    clearEventListeners();
+    currentCategoryIndex = 5; 
+    currentImageIndex = 0; 
+
     for (let i = 0; i < categorias.length; i++) {
-        let Categoria = categorias[i].getElementsByTagName('p')[0]; 
+        let Categoria = categorias[i].getElementsByTagName('p')[0];
         Categoria.textContent = NombreCategoriasVerduras[i];
-    
-        categorias[i].addEventListener('mouseover', function() {
-            Categoria.style.backgroundImage = `url(${ContenidoVerduras[i].rutas})`;
-            Categoria.style.backgroundSize = 'cover';
+
+        categorias[i].addEventListener('mouseover', function () {
+            currentCategoryIndex = i + 5; 
+            currentImageIndex = 0; 
+            ImgPrincipal.src = ContenidoVerduras[i].rutas[currentImageIndex]; 
             h2.textContent = ContenidoVerduras[i].categoria;
         });
-    
-        categorias[i].addEventListener('mouseout', function() {
-            Categoria.style.backgroundImage = ''; 
-        });
+
     }
 
     h1.textContent = 'Verduras';
 }
 
-// Para que arranque con categoria frutas
+function Previo() {
+    currentImageIndex--;
+    if (currentImageIndex < 0) {
+        if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
+            currentImageIndex = ContenidoFrutas[currentCategoryIndex].rutas.length - 1; 
+        } else { // Si estamos en la categoría de verduras
+            currentImageIndex = ContenidoVerduras[currentCategoryIndex - 5].rutas.length - 1; 
+        }
+    }
+
+    if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
+        ImgPrincipal.src = ContenidoFrutas[currentCategoryIndex].rutas[currentImageIndex]; 
+    } else { // Si estamos en la categoría de verduras
+        ImgPrincipal.src = ContenidoVerduras[currentCategoryIndex - 5].rutas[currentImageIndex]; 
+    }
+}
+
+function Siguiente() {
+    currentImageIndex++;
+    
+    if (currentCategoryIndex < 5) { // Si estamos en la categoría de frutas
+        if (currentImageIndex >= ContenidoFrutas[currentCategoryIndex].rutas.length) {
+            currentImageIndex = 0; 
+        }
+        ImgPrincipal.src = ContenidoFrutas[currentCategoryIndex].rutas[currentImageIndex]; 
+    } else { // Si estamos en la categoría de verduras
+        if (currentImageIndex >= ContenidoVerduras[currentCategoryIndex - 5].rutas.length) {
+            currentImageIndex = 0; 
+        }
+        ImgPrincipal.src = ContenidoVerduras[currentCategoryIndex - 5].rutas[currentImageIndex]; 
+    }
+}
+
+// Asignar eventos a los botones
+PreviousButton.addEventListener('click', Previo);
+NextButton.addEventListener('click', Siguiente);
+
+// Iniciar con la categoría de frutas
 CategoriaFrutas();
