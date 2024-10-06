@@ -19,8 +19,8 @@ let ContenidoVerduras = [
     {categoria: 'Tomate_rosa', rutas: "images/verduras/tomate_rosa/1.jpg"}
 ];
 
-h1 = document.querySelector('h1');
-let h2 = document.querySelector('h2');
+h1 = document.getElementsByTagName('h1')[0];
+let h2 = document.getElementsByTagName('h2')[0];
 let PreviousButton = document.getElementsByTagName('button')[0];
 let NextButton = document.getElementsByTagName('button')[1];
 
